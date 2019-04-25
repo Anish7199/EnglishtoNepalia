@@ -8,6 +8,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.HashMap;
@@ -17,15 +21,10 @@ public class EnglishToNepali extends AppCompatActivity {
     private ListView listSection;
     private Map <String, String> dictionary;
 
-    public static final String words[] = {
-            "Yeta aaunus" , "Come Here",
-            "China" , "Beijing",
-            "India" , "New Delhi",
-            "UK" , "London",
-            "US" , "Washington DC",
-            "Canada" , "Ottawa",
 
-    };
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,11 +33,27 @@ public class EnglishToNepali extends AppCompatActivity {
 
         listSection = findViewById(R.id.listSection);
         dictionary = new HashMap<>();
+        readFromFile();
 
-        for (int i=0; i< words.length; i+=2){
-            dictionary.put(words[i], words[i+1]);
         }
-        ArrayAdapter adapter = new ArrayAdapter<>(
+
+    private void readFromFile() {
+        try{
+            FileInputStream fos = openFileInput("words.txt");
+            InputStreamReader isr = new InputStreamReader(fos);
+            BufferedReader br = new BufferedReader(isr);
+            String line="";
+
+            while ((line=br.readLine()) !=null){
+                String[] parts = line.split("-");
+
+            }
+
+    }catch (IOException e){
+            e.printStackTrace();
+        }
+
+    ArrayAdapter adapter = new ArrayAdapter<>(
                 this,
                 android.R.layout.simple_list_item_1,
                 new ArrayList(dictionary.keySet())

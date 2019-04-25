@@ -18,7 +18,7 @@ public class MeaningActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
 
         if(bundle != null) {
-            String meaning = bundle.getString("anil");
+            String meaning = bundle.getString("anish");
             dicView =findViewById(R.id.dicView);
             dicView.setText(meaning);
         }
