@@ -1,6 +1,7 @@
 package com.example.englishtonepali;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,6 +18,9 @@ public class MainActivity extends AppCompatActivity {
         btnFirst = findViewById(R.id.btnFirst);
         btnDictionary = findViewById(R.id.btnDictionary);
 
+        final MyHelperClass myHelperClass  = new MyHelperClass(this);
+        final SQLiteDatabase sqLiteDatabase = myHelperClass.getWritableDatabase();
+
         btnFirst.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -31,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
 
 
     }
